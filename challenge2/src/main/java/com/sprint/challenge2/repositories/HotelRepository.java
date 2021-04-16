@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface HotelRepository {
     List<HotelDTO> getAllHotels() throws ApiException;
+    HotelDTO getHotelByCode(String code) throws ApiException;
+    List<String> getAllDestinations() throws ApiException;
+    void bookHotel(HotelDTO hotelToBook) throws ApiException;
 }
