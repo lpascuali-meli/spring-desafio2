@@ -1,9 +1,9 @@
 package com.sprint.challenge2.services;
 
-import com.sprint.challenge2.dtos.HotelDTO;
-import com.sprint.challenge2.dtos.HotelFilterDTO;
-import com.sprint.challenge2.dtos.RequestBookingDTO;
-import com.sprint.challenge2.dtos.ResponseBookingDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelFilterDTO;
+import com.sprint.challenge2.dtos.Hotel.RequestBookingDTO;
+import com.sprint.challenge2.dtos.Hotel.ResponseBookingDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 
 import java.util.List;

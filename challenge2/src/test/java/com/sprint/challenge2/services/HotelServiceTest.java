@@ -1,6 +1,10 @@
 package com.sprint.challenge2.services;
 
 import com.sprint.challenge2.dtos.*;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelFilterDTO;
+import com.sprint.challenge2.dtos.Hotel.RequestBookingDTO;
+import com.sprint.challenge2.dtos.Hotel.ResponseBookingDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 import com.sprint.challenge2.repositories.HotelRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Filter;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

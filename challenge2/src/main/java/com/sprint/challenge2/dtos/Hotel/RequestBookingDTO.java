@@ -1,4 +1,4 @@
-package com.sprint.challenge2.dtos;
+package com.sprint.challenge2.dtos.Hotel;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

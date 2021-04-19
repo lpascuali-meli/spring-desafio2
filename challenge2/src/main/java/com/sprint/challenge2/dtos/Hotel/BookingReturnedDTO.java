@@ -1,6 +1,7 @@
-package com.sprint.challenge2.dtos;
+package com.sprint.challenge2.dtos.Hotel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sprint.challenge2.dtos.PersonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

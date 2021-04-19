@@ -3,6 +3,8 @@ package com.sprint.challenge2.services;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.sprint.challenge2.exceptions.ApiException;
+import com.sprint.challenge2.repositories.FlightRepository;
+import com.sprint.challenge2.repositories.FlightRepositoryImpl;
 import com.sprint.challenge2.repositories.HotelRepository;
 import com.sprint.challenge2.repositories.HotelRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,8 +22,8 @@ class ValidateFilterServiceImplTest {
     @BeforeEach
     void init() {
         HotelRepository hotelRepository = new HotelRepositoryImpl("src/main/resources/Test/Hotel/testHotels.json");
-        // flightRepository = new FlightRepositoryImpl("src/main/resources/dbFlights.json");
-        validateService = new ValidateServiceImpl(hotelRepository);
+        FlightRepository flightRepository = new FlightRepositoryImpl("src/main/resources/dbFlights.json");
+        validateService = new ValidateServiceImpl(hotelRepository, flightRepository);
     }
 
     @DisplayName("Check date with format dd/mm/yyyy")
@@ -247,4 +249,73 @@ class ValidateFilterServiceImplTest {
         String city = "awfawffa";
         assertThrows(ApiException.class, () -> validateService.validateExistingDestination(city));
     }
+
+    @DisplayName("ExistingOriginCityOk")
+    @Test
+    void checkExistingOriginCityOk() {
+        String city = "Medellín";
+        assertDoesNotThrow(() -> validateService.validateExistingFlightOrigin(city));
+    }
+
+    @DisplayName("Return ApiException if origin location doesnt exists")
+    @Test
+    void checkExistingOriginCityFail() {
+        String city = "awfawffa";
+        assertThrows(ApiException.class, () -> validateService.validateExistingFlightOrigin(city));
+    }
+
+    @DisplayName("ExistingDestinationCityOk")
+    @Test
+    void checkExistingDestinationCityOk() {
+        String city = "Medellín";
+        assertDoesNotThrow(() -> validateService.validateExistingFlightDestination(city));
+    }
+
+    @DisplayName("Return ApiException if destination location doesnt exists")
+    @Test
+    void checkExistingDestinationCityFail() {
+        String city = "awfawffa";
+        assertThrows(ApiException.class, () -> validateService.validateExistingFlightDestination(city));
+    }
+
+    @DisplayName("ExistingFlightOriginCityOk")
+    @Test
+    void checkExistingFlightOriginCityOk() {
+        String city = "Medellín";
+        assertDoesNotThrow(() -> validateService.validateExistingFlightOrigin(city));
+    }
+
+    @DisplayName("Return ApiException if flight destination location doesnt exists")
+    @Test
+    void checkExistingFlightOriginCityFail() {
+        String city = "awfawffa";
+        assertThrows(ApiException.class, () -> validateService.validateExistingFlightOrigin(city));
+    }
+
+    @DisplayName("ExistingFlightDestinationCityOk")
+    @Test
+    void checkExistingFlightDestinationCityOk() {
+        String city = "Medellín";
+        assertDoesNotThrow(() -> validateService.validateExistingFlightDestination(city));
+    }
+
+    @DisplayName("Return ApiException if flight destination location doesnt exists")
+    @Test
+    void checkExistingFlightDestinationCityFail() {
+        String city = "awfawffa";
+        assertThrows(ApiException.class, () -> validateService.validateExistingFlightDestination(city));
+    }
+
+    @DisplayName("SelectedFlightAvailable")
+    @Test
+    void checkFlightAvailability() {
+        assertDoesNotThrow(() -> validateService.validateFreeFlight("PIBA-1420", "Business"));
+    }
+
+    @DisplayName("Return ApiException if flight isnt available")
+    @Test
+    void checkFlightAvailabilityFail() {
+        assertThrows(ApiException.class, () -> validateService.validateFreeFlight("BAPI-1235", "Economy"));
+    }
+
 }

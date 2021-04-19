@@ -1,15 +1,14 @@
 package com.sprint.challenge2.controllers;
 
-import com.sprint.challenge2.dtos.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
 import com.sprint.challenge2.dtos.HotelDtoTestHelper;
-import com.sprint.challenge2.dtos.HotelFilterDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelFilterDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 import com.sprint.challenge2.services.HotelService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
@@ -35,7 +34,7 @@ class HotelControllerTest {
     }
 
     @Test
-    @DisplayName("getAllProducts")
+    @DisplayName("getAllFlights")
     void getHotels() throws IOException, ApiException {
         when(hotelService.getHotelsByFilters(any())).thenReturn(HotelDtoTestHelper.getTestHotels());
 

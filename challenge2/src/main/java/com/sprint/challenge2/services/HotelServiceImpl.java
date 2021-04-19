@@ -1,6 +1,7 @@
 package com.sprint.challenge2.services;
 
 import com.sprint.challenge2.dtos.*;
+import com.sprint.challenge2.dtos.Hotel.*;
 import com.sprint.challenge2.exceptions.ApiException;
 import com.sprint.challenge2.repositories.HotelRepository;
 import com.sprint.challenge2.utils.DateUtils;

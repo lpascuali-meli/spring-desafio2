@@ -2,7 +2,8 @@ package com.sprint.challenge2.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sprint.challenge2.dtos.HotelDTO;
+import com.sprint.challenge2.dtos.Flight.FlightDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 import org.springframework.http.HttpStatus;
 
@@ -29,6 +30,15 @@ public class FilesUtils {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writeValue(new File(filePath), hotelDTOList);
+        } catch (IOException e) {
+            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, e.toString());
+        }
+    }
+
+    public static void writeFileFlight(String filePath, List<FlightDTO> listUpdated) throws ApiException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new File(filePath), listUpdated);
         } catch (IOException e) {
             throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, e.toString());
         }

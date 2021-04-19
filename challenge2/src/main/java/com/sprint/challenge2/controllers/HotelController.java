@@ -1,6 +1,9 @@
 package com.sprint.challenge2.controllers;
 
-import com.sprint.challenge2.dtos.*;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelFilterDTO;
+import com.sprint.challenge2.dtos.Hotel.RequestBookingDTO;
+import com.sprint.challenge2.dtos.Hotel.ResponseBookingDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 import com.sprint.challenge2.services.HotelService;
 import org.springframework.http.HttpStatus;

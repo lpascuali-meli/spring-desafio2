@@ -2,6 +2,9 @@ package com.sprint.challenge2.dtos;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.RequestBookingDTO;
+import com.sprint.challenge2.dtos.Hotel.ResponseBookingDTO;
 
 import java.io.File;
 import java.io.IOException;

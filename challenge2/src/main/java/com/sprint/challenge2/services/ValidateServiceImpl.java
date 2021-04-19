@@ -1,7 +1,9 @@
 package com.sprint.challenge2.services;
 
-import com.sprint.challenge2.dtos.HotelDTO;
+import com.sprint.challenge2.dtos.Flight.FlightDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
 import com.sprint.challenge2.exceptions.ApiException;
+import com.sprint.challenge2.repositories.FlightRepository;
 import com.sprint.challenge2.repositories.HotelRepository;
 import com.sprint.challenge2.utils.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -19,10 +21,11 @@ import java.util.regex.Pattern;
 public class ValidateServiceImpl implements ValidateService {
 
     private final HotelRepository hotelRepository;
-    // private FlightRepository flightRepository;
+    private FlightRepository flightRepository;
 
-    public ValidateServiceImpl(HotelRepository hotelRepository) {
+    public ValidateServiceImpl(HotelRepository hotelRepository, FlightRepository flightRepository) {
         this.hotelRepository = hotelRepository;
+        this.flightRepository = flightRepository;
     }
 
     /**
@@ -211,42 +214,43 @@ public class ValidateServiceImpl implements ValidateService {
         }
     }
 
-    /*
-    @Override
-    public void validateFlightDestination(String destination, String flightNumber) throws ApiException {
-        List<FlightDTO> flights = this.flightRepository.getAllFlights();
-        boolean exist = false;
-        for (FlightDTO flight : flights) {
-            if (flight.getFlightNumber().toUpperCase(Locale.ROOT).equals(flightNumber.toUpperCase(Locale.ROOT)))
-            if (StringUtils.normalize(flight.getDestination()).equals(StringUtils.normalize(destination))) {
-                exist = true;
-                break;
-            }
-        }
-        if (!exist)
-            throw new ApiException(HttpStatus.BAD_REQUEST, "The flight destination " + destination + " doesn't exist for the flight number " + flightNumber);
-    }
-*/
     /**
      * Validate the existence of the origin
      *
-     * @param origin origin
+     * @param origin city of origin
      * @throws ApiException
      */
-    /*
     @Override
-    public void validateFlightOrigin(String origin, String flightNumber) throws ApiException {
-        List<FlightDTO> flights = this.flightRepository.getAllFlights();
-        boolean exist = false;
-        for (FlightDTO flight : flights) {
-            if (flight.getFlightNumber().toUpperCase(Locale.ROOT).equals(flightNumber.toUpperCase(Locale.ROOT)))
-                if (StringUtils.normalize(flight.getOrigin()).equals(StringUtils.normalize(origin))) {
-                exist = true;
-                break;
-            }
+    public void validateExistingFlightOrigin(String origin) throws ApiException {
+        if(!this.flightRepository.getAllOrigins().contains(StringUtils.normalize(origin)))  {
+            throw new ApiException(HttpStatus.NOT_FOUND, "The flight origin " + origin + " doesn't exist");
         }
-        if (!exist) throw new ApiException(HttpStatus.BAD_REQUEST, "The flight origin " + origin + " doesn't exist for the flight number " + flightNumber);
     }
-    */
+    /**
+     * Validate the existence of the destination
+     *
+     * @param destination city of destination
+     * @throws ApiException
+     */
+    @Override
+    public void validateExistingFlightDestination(String destination) throws ApiException {
+        if(!this.flightRepository.getAllDestinations().contains(StringUtils.normalize(destination)))  {
+            throw new ApiException(HttpStatus.NOT_FOUND, "The flight destination " + destination + " doesn't exist");
+        }
+    }
 
+    /**
+     * Validate if the flight is already booked
+     * @param flightNumber flight number
+     * @param seatType seat Type
+     */
+    @Override
+    public void validateFreeFlight(String flightNumber, String seatType) throws ApiException {
+        FlightDTO flight = this.flightRepository.getFlightByCodeAndSeatType(flightNumber, seatType);
+        if (flight == null ) {
+            throw new ApiException(HttpStatus.BAD_REQUEST, "The flight " + flightNumber + " doesn't exist");
+        }
+        if (Boolean.TRUE.equals(flight.getBooked()))
+            throw new ApiException(HttpStatus.BAD_REQUEST, "The flight " + flightNumber + " is already booked");
+    }
 }

@@ -1,4 +1,4 @@
-package com.sprint.challenge2.dtos;
+package com.sprint.challenge2.dtos.Hotel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -17,9 +17,9 @@ public class HotelDTO {
     private String city;
     private String roomType;
     private Double nightPrice;
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
     private Date dateFrom;
-    @JsonFormat(pattern="dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", locale = "pt-BR", timezone = "Brazil/East")
     private Date dateTo;
     private Boolean booked;
 

@@ -2,7 +2,7 @@ package com.sprint.challenge2.repositories;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sprint.challenge2.dtos.HotelDTO;
+import com.sprint.challenge2.dtos.Hotel.HotelDTO;
 import com.sprint.challenge2.exceptions.ApiException;
 import com.sprint.challenge2.utils.FilesUtils;
 import com.sprint.challenge2.utils.StringUtils;

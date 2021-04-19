@@ -1,0 +1,10 @@
+[{
+  "flightNumber": "MEPI-9986",
+  "origin": "Medellín",
+  "destination": "Puerto Iguazú",
+  "seatType": "Business",
+  "price": 41640,
+  "dateFrom": "17/04/2021",
+  "dateTo": "02/05/2021",
+  "booked":  false
+}]
