@@ -1,0 +1,22 @@
+[
+  {
+    "code": "CP-0004",
+    "name": "Central Plaza",
+    "city": "Medellín",
+    "roomType": "Multiple",
+    "nightPrice": 8600.0,
+    "dateFrom": "01/03/2021",
+    "dateTo": "17/04/2021",
+    "booked": false
+  },
+  {
+    "code": "CP-0002",
+    "name": "Central Plaza 2",
+    "city": "Medellín",
+    "roomType": "Doble",
+    "nightPrice": 6400.0,
+    "dateFrom": "10/02/2021",
+    "dateTo": "20/03/2021",
+    "booked": false
+  }
+]

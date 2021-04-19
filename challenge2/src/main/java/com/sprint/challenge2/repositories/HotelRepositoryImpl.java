@@ -68,7 +68,10 @@ public class HotelRepositoryImpl implements HotelRepository {
     public List<String> getAllDestinations () throws ApiException {
         List<String> destinations = new ArrayList<>();
         for ( HotelDTO hotel : getAllHotels()) {
-            destinations.add(StringUtils.normalize(hotel.getCity()));
+            String hotelLocation = StringUtils.normalize(hotel.getCity());
+            if (!destinations.contains(hotelLocation)) {
+                destinations.add(hotelLocation);
+            }
         }
         return destinations;
     }

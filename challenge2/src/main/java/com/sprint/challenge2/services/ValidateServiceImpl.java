@@ -164,7 +164,7 @@ public class ValidateServiceImpl implements ValidateService {
     @Override
     public void validateFreeHotel(String hotelCode) throws ApiException {
         HotelDTO hotel = this.hotelRepository.getHotelByCode(hotelCode);
-        if (hotel.getBooked())
+        if (Boolean.TRUE.equals(hotel.getBooked()))
             throw new ApiException(HttpStatus.BAD_REQUEST, "The hotel " + hotel.getName() + " is already booked");
     }
 
@@ -177,6 +177,18 @@ public class ValidateServiceImpl implements ValidateService {
         String pm = StringUtils.normalize(paymentType.toUpperCase(Locale.ROOT));
         if ((!pm.equals("CREDIT")) && (!pm.equals("DEBIT")))
             throw new ApiException(HttpStatus.BAD_REQUEST, "Payment method " + paymentType + " not valid");
+    }
+
+    /**
+     * Validate if paymentType is DEBIT, the due's quantity be 1
+     * @param paymentType payment type
+     * @param dues quantity of dues
+     */
+    @Override
+    public void validatePaymentTypeWithDues(String paymentType, int dues) throws ApiException {
+        String pm = StringUtils.normalize(paymentType.toUpperCase(Locale.ROOT));
+        if (pm.equals("DEBIT") && dues > 1)
+            throw new ApiException(HttpStatus.BAD_REQUEST, "Payment method DEBIT allows one due only");
     }
 
     /**

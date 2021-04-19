@@ -14,6 +14,9 @@ public interface ValidateService {
     void validateEmailFormat(String email) throws ApiException;
     void validateFreeHotel(String hotelCode) throws ApiException;
     void validatePaymentType(String type) throws ApiException;
+
+    void validatePaymentTypeWithDues(String paymentType, int dues) throws ApiException;
+
     void validateDuesAmount(Integer dues) throws ApiException;
 
     void validateExistingDestination(String destination) throws ApiException;

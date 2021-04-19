@@ -1,0 +1,41 @@
+{
+  "userName": "lpascuali97@gmail.com",
+  "amount": 319800.0,
+  "interest": 31980.0,
+  "total": 351780.0,
+  "booking": {
+    "dateFrom": "11/02/2021",
+    "dateTo": "22/03/2021",
+    "destination": "Puerto Iguazú",
+    "hotelCode": "CH-0003",
+    "peopleAmount": 3,
+    "roomType": "TRIPLE",
+    "people": [
+      {
+        "dni": "12345678",
+        "name": "Tomas",
+        "lastname": "Olalde",
+        "birthDate": "21/07/1995",
+        "mail": "tomasolalde@gmail.com"
+      },
+      {
+        "dni": "12345678",
+        "name": "Lisandro",
+        "lastname": "Pascuali",
+        "birthDate": "20/06/1997",
+        "mail": "lpascuali@gmail.com"
+      },
+      {
+        "dni": "12345678",
+        "name": "Rodrigo",
+        "lastname": "Rodriguez",
+        "birthDate": "10/06/1789",
+        "mail": "rrodriguez@gmail.com"
+      }
+    ]
+  },
+  "statusCode": {
+    "code": 200,
+    "message": "Booking successful"
+  }
+}

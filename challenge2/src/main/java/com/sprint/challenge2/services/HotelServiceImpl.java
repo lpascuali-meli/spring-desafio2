@@ -109,6 +109,7 @@ public class HotelServiceImpl implements HotelService {
         Date dateValidFrom = validateService.validateDateFormat(req.getBooking().getDateFrom());
         Date dateValidTo = validateService.validateDateFormat(req.getBooking().getDateTo());
         validateService.validateDateInterval(dateValidFrom, dateValidTo);
+        validateService.validateExistingDestination(booking.getDestination());
         validateService.validateHotelDestination(booking.getDestination(), booking.getHotelCode());
         validateService.validateRoomType(booking.getRoomType(), booking.getHotelCode());
         validateService.validatePersonAmount(booking.getRoomType(), booking.getPeopleAmount());
@@ -118,6 +119,7 @@ public class HotelServiceImpl implements HotelService {
             validateService.validateEmailFormat(person.getMail());
         }
         validateService.validatePaymentType(paymentMethod.getType());
+        validateService.validatePaymentTypeWithDues(paymentMethod.getType(), paymentMethod.getDues());
         validateService.validateDuesAmount(paymentMethod.getDues());
     }
 

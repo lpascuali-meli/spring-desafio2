@@ -19,7 +19,7 @@ class ValidateFilterServiceImplTest {
 
     @BeforeEach
     void init() {
-        HotelRepository hotelRepository = new HotelRepositoryImpl("src/main/resources/Test/testHotels.json");
+        HotelRepository hotelRepository = new HotelRepositoryImpl("src/main/resources/Test/Hotel/testHotels.json");
         // flightRepository = new FlightRepositoryImpl("src/main/resources/dbFlights.json");
         validateService = new ValidateServiceImpl(hotelRepository);
     }
@@ -174,5 +174,77 @@ class ValidateFilterServiceImplTest {
         assertThrows(ApiException.class, () -> validateService.validateEmailFormat(e4));
         assertThrows(ApiException.class, () -> validateService.validateEmailFormat(e5));
         assertThrows(ApiException.class, () -> validateService.validateEmailFormat(e6));
+    }
+
+    @DisplayName("Hotel is available")
+    @Test
+    void checkAvailableHotel() {
+        String hotelCode = "EC-0003";
+        assertDoesNotThrow(() -> validateService.validateFreeHotel(hotelCode));
+    }
+
+    @DisplayName("Return ApiException if hotel is not available")
+    @Test
+    void checkNotAvailableHotel() {
+        String hotelCode = "CH-0003";
+        assertThrows(ApiException.class, () -> validateService.validateFreeHotel(hotelCode));
+    }
+
+    @DisplayName("Valid payment type")
+    @Test
+    void checkValidPaymentType() {
+        String paymentType = "CREDIT";
+        assertDoesNotThrow(() -> validateService.validatePaymentType(paymentType));
+    }
+
+    @DisplayName("Return ApiException if payment type is not valid")
+    @Test
+    void checkInvalidPaymentType() {
+        String paymentType = "awgawg";
+        assertThrows(ApiException.class, () -> validateService.validatePaymentType(paymentType));
+    }
+
+    @DisplayName("Valid payment type and due's quantity")
+    @Test
+    void checkValidPaymentTypeAndDues() {
+        String paymentType = "DEBIT";
+        int dues = 1;
+        assertDoesNotThrow(() -> validateService.validatePaymentTypeWithDues(paymentType, dues));
+    }
+
+    @DisplayName("Return ApiException if payment type and due's quantity is not valid")
+    @Test
+    void checkInvalidPaymentTypeAndDues() {
+        String paymentType = "DEBIT";
+        int dues = 2;
+        assertThrows(ApiException.class, () -> validateService.validatePaymentTypeWithDues(paymentType, dues));
+    }
+
+    @DisplayName("ValidDues")
+    @Test
+    void checkValidDues() {
+        int dues = 3;
+        assertDoesNotThrow(() -> validateService.validateDuesAmount(dues));
+    }
+
+    @DisplayName("Return ApiException if dues are not valid")
+    @Test
+    void checkInvalidDues() {
+        int dues = 15;
+        assertThrows(ApiException.class, () -> validateService.validateDuesAmount(dues));
+    }
+
+    @DisplayName("ExistingCityOk")
+    @Test
+    void checkExistingCityOk() {
+        String city = "Bogotá";
+        assertDoesNotThrow(() -> validateService.validateExistingDestination(city));
+    }
+
+    @DisplayName("Return ApiException if location doesnt exists")
+    @Test
+    void checkExistingCityFail() {
+        String city = "awfawffa";
+        assertThrows(ApiException.class, () -> validateService.validateExistingDestination(city));
     }
 }

@@ -26,7 +26,7 @@ public class StringUtils {
      * @param email String to validate
      * @return Boolean true if is valid, false if is not valid
      */
-    public Boolean validateEmailFormat(String email) {
+    public static Boolean validateEmailFormat(String email) {
         String regex = "^[\\w!#$%&'+/=?`{|}~^-]+(?:\\.[\\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);

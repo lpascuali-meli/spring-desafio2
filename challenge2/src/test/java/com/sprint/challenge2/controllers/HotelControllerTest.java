@@ -22,6 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
+@DisplayName("Unit Test | Hotel Controller")
 class HotelControllerTest {
     @Mock
     private HotelService hotelService;
